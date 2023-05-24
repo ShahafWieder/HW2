@@ -3,15 +3,15 @@ public class Date {
     public Date(int year, int month, int day) {
         this.day = day;
         if(day>31 || day<1){
-            day=1;
+            this.day=1;
         }
-        month = this.month;
+        this.month=month;
         if(month>12 || month<1){
-            month=1;
+            this.month=1;
         }
-        year = this.year;
+         this.year=year;
         if(year<-9999 || year>9999){
-            year=0;
+            this.year=0;
         }
     }
     public void setMonth(int month2) {
@@ -24,12 +24,44 @@ public class Date {
 
     @Override
     public String toString() {
-        return (this.day+"/"+this.month+"/"+this.year);
+
+        String da = null;
+        String mo = null;
+        String ye = null;
+
+        if(this.day<10){
+            da="0"+this.day;
+        }
+        else {
+            da=String.valueOf(this.day);
+        }
+        if(this.month<10){
+            mo="0"+this.month;
+        }
+        else {
+            mo=String.valueOf(this.month);
+        }
+        if(this.year<1000 && this.year > 99 || this.year < -99 && this.year > -1000){
+            ye="0"+this.year;
+        }
+        else if(this.year<100 && this.year > 9 || this.year < -9 && this.year > -100){
+            ye="00"+this.year;
+        }
+        else if(this.year<10 && this.year >=0 || this.year <= 0 && this.year > -10){
+            ye="000"+this.year;
+        }
+        else {
+            ye=String.valueOf(this.year);
+        }
+        return (da+"/"+mo+"/"+ye);
     }
 
     @Override
     public boolean equals(Object obj){
-        if(!(obj instanceof Date)){
+    if(obj==null){
+        return false;
+    }
+        if(!(this.hashCode()==obj.hashCode())||!(obj instanceof Date)) {
             return false;
         }
         Date d2=(Date)obj;
@@ -39,6 +71,6 @@ public class Date {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return day*31+month*12+year*9999;
     }
 }

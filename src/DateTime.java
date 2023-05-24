@@ -11,15 +11,49 @@ public class DateTime extends Date{
             this.minute = 0;
         }
     }
+    public void setHour (int hour2){
+
+        if(hour2<0 || hour2>23) {
+            this.hour = 0;
+        }
+        else { this.hour=hour2;}
+    }
+  //  public  void setMonth(int month2){
+    //    super.setMonth(month2);
+    //}
+    public void setMinute(int minute2) {
+
+        if(minute2<0 || minute2>59) {
+            this.minute=0;
+        }
+        else {this.minute=minute2;}
+    }
 
     @Override
     public String toString() {
-        return (super.day+"/"+super.month+"/"+super.year+" "+this.hour+":"+this.minute);
+        String ho=null;
+        String mi=null;
+        if(this.hour<10){
+            ho="0"+this.hour;
+        }
+        else {
+            ho=String.valueOf(this.hour);
+        }
+        if(this.minute<10){
+            mi="0"+this.minute;
+        }
+        else {
+            mi=String.valueOf(this.minute);
+        }
+        return (super.toString()+" "+ho+":"+mi);
     }
 
     @Override
     public boolean equals(Object obj){
-        if(!(obj instanceof DateTime)){
+        if(obj==null) {
+            return false;
+        }
+        if(!(this.hashCode()==obj.hashCode())||!(obj instanceof DateTime)){
             return false;
         }
         DateTime dt2=(DateTime) obj;
