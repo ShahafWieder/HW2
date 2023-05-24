@@ -1,7 +1,7 @@
 public class Date {
     protected int day, month, year;
-    public Date(int day, int month, int year) {
-        day = this.day;
+    public Date(int year, int month, int day) {
+        this.day = day;
         if(day>31 || day<1){
             day=1;
         }
@@ -13,6 +13,13 @@ public class Date {
         if(year<-9999 || year>9999){
             year=0;
         }
+    }
+    public void setMonth(int month2) {
+
+        if(month2>12 || month2<1){
+          this.month= 1;
+        }
+        else {this.month=month2;}
     }
 
     @Override

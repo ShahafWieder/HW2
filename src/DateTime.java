@@ -1,14 +1,14 @@
 public class DateTime extends Date{
    protected int hour, minute;
-    public DateTime(int day, int month, int year, int hour, int minute) {
-        super(day, month, year);
-        hour = this.hour;
-        if(hour<0 || day>23) {
-            hour = 0;
+    public DateTime(int year, int month, int day, int hour, int minute) {
+        super(year, month, day);
+        this.hour=hour;
+        if(hour<0 || hour>23) {
+            this.hour = 0;
         }
-        minute = this.minute;
-        if(minute<0 || month>59) {
-            minute = 0;
+        this.minute=minute;
+        if(minute<0 || minute>59) {
+            this.minute = 0;
         }
     }
 
@@ -28,6 +28,6 @@ public class DateTime extends Date{
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return super.hashCode()+(hour+1)*24+(minute+1)*60;
     }
 }
