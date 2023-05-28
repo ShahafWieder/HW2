@@ -62,6 +62,6 @@ public class DateTime extends Date{
 
     @Override
     public int hashCode() {
-        return super.hashCode()+(hour+1)*24+(minute+1)*60;
+        return super.hashCode()+(hour+1)*60+(minute+1);
     }
 }
