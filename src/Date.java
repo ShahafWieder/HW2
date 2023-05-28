@@ -10,7 +10,7 @@ public class Date {
             this.month=1;
         }
          this.year=year;
-        if(year<-9999 || year>9999){
+        if(year<-3999 || year>3999){
             this.year=0;
         }
     }
