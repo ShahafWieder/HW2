@@ -1,8 +1,7 @@
 public class Polynomial extends Function {
     private double [] values;
-    public Polynomial(double...p){
-        super();
-        this.values=p;
+    public Polynomial(double...p) {
+            this.values = p;
     }
 
 }
