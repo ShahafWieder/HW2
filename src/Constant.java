@@ -1,7 +1,7 @@
 public class Constant extends Function{
 private  double cFunction;
 public  Constant(double c){
-   super(c);
+
    this.cFunction=c;
 }
     @Override
@@ -15,8 +15,8 @@ public  Constant(double c){
 
     @Override
     public Function derivative() {
-    Function f=new Constant('0') ;
-        return(f);
+    Constant c=new Constant('0') ;
+        return(c);
     }
     /**
     @Override

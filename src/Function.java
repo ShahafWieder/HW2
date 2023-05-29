@@ -1,10 +1,4 @@
 public abstract class Function {
-    protected double[] f;
-
-    public Function(double... f) {
-        this.f = f;
-    }
-
     public abstract double valueAt(double x);
 
     public abstract String toString();
