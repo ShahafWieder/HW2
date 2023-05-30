@@ -72,10 +72,16 @@ public class Polynomial extends Function {
     @Override
     public Function derivative() {
         double[] derivativeCoefficients = new double[values.length - 1];
-        for (int i = 1; i < values.length; i++) {
-            derivativeCoefficients[i - 1] = values[i] * i;
+        if(values.length > 1) {
+            for (int i = 1; i < values.length; i++) {
+                derivativeCoefficients[i - 1] = values[i] * i;
+            }
+            return new Polynomial(derivativeCoefficients);
         }
-        return new Polynomial(derivativeCoefficients);
+        else{
+            return new Polynomial(0);
+        }
+
     }
     public double [] getValues(){
         return this.values;

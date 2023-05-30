@@ -1,4 +1,4 @@
-public class Difference extends Function {
+public class Difference extends Polynomial {
     private double [] values1;
     private double [] values2;
     private double[] diffValues;
@@ -21,82 +21,17 @@ public class Difference extends Function {
         }
     }
     public double valueAt(double x){
-        double value = 0;
-        for(int i = 0; i<this.diffValues.length; i++){
-            value += this.diffValues[i] * Math.pow(x, i);
-        }
-        return value;
+       return super.valueAt(x);
     }
     @Override
     public String toString(){
-        String polyString = "";
-        for(int i = 0; i<this.diffValues.length; i++) {
-            if (i == 0) {
-                if (checkInt(this.diffValues[i])){
-                    polyString+=(int)this.diffValues[i];
-                }
-                else{
-                    polyString+=this.diffValues[i];
-                }
-            }
-            else {
-                if (this.diffValues[i] > 0) {
-                    polyString += " + ";
-                } else {
-                    polyString += " - ";
-                }
-                if (this.diffValues[i] != 1 || this.diffValues[i] != -1) {
-                    if (i == 1) {
-                        if (checkInt(this.diffValues[i])){
-                            polyString += (int) this.diffValues[i] + "x";
-                        }
-                        else {
-                            polyString+=this.diffValues[i]+ "x";
-                        }
-                    }
-                    else {
-                        if (checkInt(this.diffValues[i])){
-                            polyString += (int) this.diffValues[i] + "x^" + i;
-                        }
-                        else {
-                            polyString+=this.diffValues[i]+"x^" + i;
-                        }
-                    }
-                }
-                else {
-                    if (i == 1) {
-                        polyString += "x";
-                    } else {
-                        polyString += "x^" + i;
-                    }
-                }
-            }
-        }
-        return polyString;
+        return super.toString();
     }
     @Override
     public Function derivative(){
-        if(diffValues.length > 1) {
-            double[] derivativeCoefficients = new double[diffValues.length - 1];
-            for (int i = 1; i < diffValues.length; i++) {
-                derivativeCoefficients[i - 1] = diffValues[i] * i;
-            }
-            return new Polynomial(derivativeCoefficients);
-        }
-        else{
-            return new Polynomial(0);
-        }
+       return super.derivative();
     }
-    public boolean checkInt (double current_value){
-        double absValue = Math.abs(current_value);
-        int intValue = (int) absValue;
-        if (absValue == intValue) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+
     public double [] getDiffValues(){
         return this.diffValues;
     }
