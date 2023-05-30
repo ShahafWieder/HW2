@@ -1,21 +1,20 @@
 public class Constant extends Polynomial{
-private  double cFunction;
+private  double [] cFunction;
 public  Constant(double c){
 
-   this.cFunction=c;
+   this.cFunction= new double[]{c};
 }
     @Override
-    public  double valueAt (double x){
-        return this.cFunction;
-}
+    public double valueAt (double x){
+    return super.valueAt(x);
+    }
     @Override
     public String toString() {
-        return (""+this.cFunction);
+    return super.toString();
     }
 
     @Override
     public Function derivative() {
-    Constant c=new Constant('0') ;
-        return(c);
+    return super.derivative();
     }
 }

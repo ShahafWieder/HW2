@@ -1,8 +1,8 @@
 public class MultiProduct extends Polynomial{
-    private Polynomial[] values;
-    private  double [] tempProduct;
-    private double [] multiprodductFunction;
-    public MultiProduct(Polynomial...p) {
+    private Function[] values;
+    private Function tempProduct;
+    private Function multiprodductFunction;
+    public MultiProduct(Function...p) {
         this.values = p;
         this.tempProduct =new Product(this.values[0].getValues(),this.values[1].getValues()).getProductValues();
         for(int i = 1; i< this.values.length-1; i++){

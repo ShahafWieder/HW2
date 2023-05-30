@@ -87,15 +87,7 @@ public class Main {
         Function diff1 = new Difference(const1, const3);
         testFunction(diff1, "diff1", 10);
 
-        Function quotient1 = new Quotient(
-                                          new Sum(
-                                                  new Difference(
-                                                          new Product(
-                                                                  const1,
-                                                                  const3),
-                                                          const2),
-                                                  new Polynomial(1, 0, 1)),
-                                          prod1);
+        Function quotient1 = new Quotient(new Sum(new Difference(new Product(const1, const3), const2), new Polynomial(1, 0, 1)), prod1);
         testFunction(quotient1, "quotient1", 4);
 
         Function multiSum1 = new MultiSum(

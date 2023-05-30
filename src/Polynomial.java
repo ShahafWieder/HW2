@@ -1,9 +1,9 @@
 public class Polynomial extends Function {
-    private double [] values;
-    public Polynomial(double...p) {
+        private double [] values;
+        public Polynomial(double...p) {
             this.values = p;
-    }
-    @Override
+        }
+        @Override
     public double valueAt(double x){
         double value = 0;
         for(int i = 0; i<this.values.length; i++){
