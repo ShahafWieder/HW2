@@ -1,6 +1,7 @@
 public class MultiSum extends Polynomial{
     private Polynomial[] values;
-    private  double [] multiSumFunction;
+    private  double [] tempSum;
+    private double [] multisumFunction;
     public MultiSum(Polynomial...p) {
             this.values = p;
             this.tempSum =new Sum(this.values[0].getValues(),this.values[1].getValues()).getSumValues();
