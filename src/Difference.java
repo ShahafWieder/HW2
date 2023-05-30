@@ -2,9 +2,9 @@ public class Difference extends Polynomial {
     private double [] values1;
     private double [] values2;
     private double[] diffValues;
-    public Difference(double[] p1, double[] p2) {
-        this.values1 = p1;
-        this.values2 = p2;
+    public Difference(Function p1, Function p2) {
+        this.values1 = ((Polynomial)p1).getValues();
+        this.values2 = ((Polynomial)p2).getValues();
         diffValues =new double[Math.max(this.values1.length,this.values2.length)];
         int counter = 0;
         for(int i=0;i<Math.min(this.values1.length,this.values2.length);i++){

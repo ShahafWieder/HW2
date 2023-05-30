@@ -3,7 +3,7 @@ public class Negation extends Polynomial{
     public Negation(Function f1) {
         this.values = ((Polynomial)f1).getValues();
         for(int i = 0; i < values.length; i++){
-            values[i] = -values[i];
+            this.values[i] = -values[i];
         }
     }
     @Override
