@@ -1,7 +1,9 @@
 public class Difference extends Polynomial {
-    private double [] values1;
-    private double [] values2;
-    private double[] diffValues;
+    //private double [] values1;
+    //private double [] values2;
+  //  private double[] diffValues;
+    private  Function d1;
+    private  Function d2;
     public Difference(Function p1, Function p2) {
         this.d1=p1;
         this.d2=p2;
@@ -24,7 +26,7 @@ public class Difference extends Polynomial {
          }*/
     //}
     public double valueAt(double x){
-       return super.valueAt(x);
+       return (this.d1.valueAt(x)-this.d2.valueAt(x));
     }
     @Override
     public String toString(){
@@ -32,11 +34,11 @@ public class Difference extends Polynomial {
     }
     @Override
     public Function derivative(){
-       return super.derivative();
+       return new Difference(this.d1.derivative(),this.d2.derivative());
     }
 
-    public double [] getDiffValues(){
-        return this.diffValues;
-    }
+  //  public double [] getDiffValues(){
+    //    return this.diffValues;
+   // }
 }
 

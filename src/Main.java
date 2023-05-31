@@ -144,6 +144,7 @@ public class Main {
                                                                         const3),
                                                                 const2),
                                                         new Negation(
+                                                        new Negation(
                                                                 new Quotient(
                                                                         new Constant(2.17),
                                                                         new Difference(quotient1, new Negation(poly2)))))))));

@@ -26,11 +26,11 @@ public class Sum extends Polynomial {
 
     @Override
     public double valueAt(double x){
-        return super.valueAt(x);
+        return (this.f1.valueAt(x)+this.f2.valueAt(x));
     }
     @Override
     public String toString(){
-        return super.toString();
+        return "(("+this.f1+")+"+"("+this.f2+"))";
     }
     @Override
     public Function derivative(){

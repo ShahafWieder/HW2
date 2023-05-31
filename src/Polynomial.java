@@ -13,7 +13,7 @@ public class Polynomial extends Function {
     }
     @Override
     public String toString() {
-        String polyString = "";
+        String polyString = "(";
         for(int i = 0; i<this.values.length; i++) {
             if (i == 0) {
                 if (checkInt(this.values[i])){
@@ -56,6 +56,7 @@ public class Polynomial extends Function {
                 }
             }
         }
+        polyString+=")";
         return polyString;
     }
     public boolean checkInt (double current_value){

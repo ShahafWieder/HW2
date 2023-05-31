@@ -1,27 +1,48 @@
-public class MultiSum extends Polynomial{
-    private Function[] values;
-    private Function tempSum;
-    private Function multisumFunction;
-    public MultiSum(Function...p) {
-            this.values = p;
-            this.tempSum = new Sum(this.values[0],this.values[1]);
-            for(int i = 1; i< this.values.length-1; i++){
-                this.multisumFunction = new Sum(tempSum,this.values[i+1]);
-                this.tempSum =this.multisumFunction;
-            }
+public class MultiSum extends Polynomial {
+    private Function[] functions;
+    //private Function f1;
+    //private Function f2;
+
+    public MultiSum(Function f1, Function f2, Function... p) {
+        this.functions = new Function[p.length + 2];
+        this.functions[0] = f1;
+        this.functions[1] = f2;
+        for (int i = 2; i < p.length + 2; i++) {
+            this.functions[i] = p[i - 2];
+        }
     }
+
     @Override
-    public double valueAt(double x){
-        return super.valueAt(x);
+    public double valueAt(double x) {
+        double value = 0;
+        for (int i = 0; i < this.functions.length; i++) {
+            value += this.functions[i].valueAt(x);
+        }
+        return value;
     }
 
     @Override
     public String toString() {
-        return super.toString();
+        String sumString = "(";
+        for (int i = 0; i < this.functions.length - 1; i++) {
+            //if(this.functions[i].toString().charAt(0)!='-')
+            //     sumString+="+";
+
+            sumString += "(" + this.functions[i].toString() + ")+";
+        }
+        sumString = sumString + "(" + this.functions[functions.length - 1].toString() + "))";
+        return sumString;
     }
 
     @Override
     public Function derivative() {
-        return super.derivative();
+        Function[] derivativeFunctions = new Function[functions.length-2];
+        Function f1=functions[0].derivative();
+        Function f2=functions[1].derivative();
+        for (int i = 0; i < functions.length-2; i++) {
+            derivativeFunctions[i] = functions[i+2].derivative();
+        }
+        return new MultiSum(f1,f2,derivativeFunctions);
     }
+
 }
