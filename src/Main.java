@@ -146,7 +146,7 @@ public class Main {
                                                         new Negation(
                                                                 new Quotient(
                                                                         new Constant(2.17),
-                                                                        new Difference(quotient1, new Negation(poly2))))))));
+                                                                        new Difference(quotient1, new Negation(poly2)))))))));
         testFunction(massiveFunc, "massiveFunc", 5);
 
         testRootFinding();

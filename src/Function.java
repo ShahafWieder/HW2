@@ -68,6 +68,27 @@ public abstract class Function {
     }
 
     public Function taylorPolynomial(int n) {
-    return null;
+        double[] coefficients = new double[n + 1];
+        Function currentFunction = this;
+        if(currentFunction.derivative().valueAt(0) == 0){
+            return new Polynomial(new double[]{currentFunction.valueAt(0)});
+        }
+        for (int i = 0; i <= n; i++) {
+            Function derivative = currentFunction.derivative();
+            double coefficient = derivative.valueAt(0);
+            coefficient /= factorial(i); // Divide the coefficient by i factorial
+            coefficients[i] = coefficient;
+            currentFunction = derivative; // Update the currentFunction to the derivative for the next iteration
+        }
+        return new Polynomial(coefficients);
+    }
+
+    // Helper method to calculate factorial
+    public static long factorial(int n) {
+        long fact = 1;
+        for (int i = 2; i <= n; i++) {
+            fact *= i;
+        }
+        return fact;
     }
 }
