@@ -10,11 +10,26 @@ public  Constant(double c){
     }
     @Override
     public String toString() {
-    return "("+this.cFunction+")";
+        if (checkInt(this.cFunction)){
+            return "("+(int)this.cFunction+")";
+        }
+        else{
+            return "("+this.cFunction+")";
+        }
     }
 
     @Override
     public Function derivative() {
-    return new Polynomial(0);
+    return new Constant(0);
+    }
+    public boolean checkInt (double current_value){
+        double absValue = Math.abs(current_value);
+        int intValue = (int) absValue;
+        if (absValue == intValue) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

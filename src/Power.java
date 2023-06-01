@@ -2,21 +2,10 @@ public class Power extends Polynomial{
     private Function f;
     private int power;
     private Function tempPower;
-    //private Function powerFunction;
     public Power(Function f1, int power) {
         this.f = f1;
         this.power=power;
-      //  if(power == 1){
-        //  powerFunction=this.f;
         }
-        //else{
-    //  this.tempPower =new Product(this.f,this.f);
-      //      for(int i = 1; i< this.power-1; i++) {
-        //        this.powerFunction = new Product(this.f, this.f);
-          //      this.tempPower = this.powerFunction;
-           // }
-        //}
-//    }
     @Override
     public double valueAt(double x){
         return Math.pow(f.valueAt(x),this.power);
@@ -24,7 +13,7 @@ public class Power extends Polynomial{
     @Override
     public String toString() {
         if(this.power >1) {
-            return "(" + this.f.toString() + ")^" + this.power;
+            return "(" + this.f.toString() + "^" + this.power+")";
         }
         else{
             return "(" + this.f.toString() + ")";

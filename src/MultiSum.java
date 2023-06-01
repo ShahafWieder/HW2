@@ -1,8 +1,5 @@
 public class MultiSum extends Polynomial {
     private Function[] functions;
-    //private Function f1;
-    //private Function f2;
-
     public MultiSum(Function f1, Function f2, Function... p) {
         this.functions = new Function[p.length + 2];
         this.functions[0] = f1;
@@ -25,10 +22,7 @@ public class MultiSum extends Polynomial {
     public String toString() {
         String sumString = "(";
         for (int i = 0; i < this.functions.length - 1; i++) {
-            //if(this.functions[i].toString().charAt(0)!='-')
-            //     sumString+="+";
-
-            sumString += "(" + this.functions[i].toString() + ")+";
+            sumString += this.functions[i].toString() + " + ";
         }
         sumString = sumString + "(" + this.functions[functions.length - 1].toString() + "))";
         return sumString;

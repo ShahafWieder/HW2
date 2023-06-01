@@ -1,41 +1,20 @@
-public class Negation extends Polynomial {
-    //private double [] values;
+public class Negation extends Product {
     private Function f;
 
     public Negation(Function f) {
+        super(f, new Constant(-1));
         this.f = f;
-        /**for(int i = 0; i < values.length; i++){
-         this.values[i] = -values[i];
-         }   */
     }
 
     @Override
     public double valueAt(double x) {
-        return -1 * (this.f.valueAt(x));
+        return super.valueAt(x);  // This will compute f(x) * -1
     }
 
     @Override
-    public String toString() {
-        String original = super.toString();
-
-        if (original.charAt(1) != '-') {
-            String negate = original.substring(1);
-            negate = "+" + negate;
-
-            negate.replace("+", "t");
-            negate.replace("-", "+");
-            negate.replace("t", "-");
-            return "(" + negate;
-        }
-        else {
-            original.replace("+", "t");
-            original.replace("-", "+");
-            original.replace("t", "-");
-        return original;
-        }
-
-
-}
+    public  String  toString(){
+        return "(-"+this.f.toString()+")";
+    }
     @Override
     public Function derivative() {
         return new Negation(this.f.derivative());

@@ -14,7 +14,12 @@ public class Polynomial extends Function {
     @Override
     public String toString() {
         String polyString = "(";
+        int counter = 0;
         for(int i = 0; i<this.values.length; i++) {
+            if(this.values[i]==0){
+                counter++;
+                continue;
+            }
             if (i == 0) {
                 if (checkInt(this.values[i])){
                     polyString+=(int)this.values[i];
