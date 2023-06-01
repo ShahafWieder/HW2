@@ -13,7 +13,7 @@ public class MultiProduct extends Polynomial {
 
     @Override
     public double valueAt(double x) {
-        double value = 0;
+        double value = 1; // Initialize to 1 instead of 0
         for (int i = 0; i < this.functions.length; i++) {
             value *= this.functions[i].valueAt(x);
         }

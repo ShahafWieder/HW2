@@ -29,14 +29,12 @@ public class Polynomial extends Function {
                 }
             }
              else {
-                 //if((this.values[i-1])!=0 || i=this.values.length-1) {
                      if (this.values[i] > 0 && i!=counter) {
                          polyString += " + ";
                      } else if (this.values[i] < 0) {
                          polyString += " - ";
                      }
                      else {polyString += "";}
-                 //}
                 if (this.values[i] != 1.0 && this.values[i] != -1.0) {
                     if (i == 1) {
                         if (checkInt(this.values[i])){
@@ -88,7 +86,7 @@ return polyString;
             return new Polynomial(derivativeCoefficients);
         }
         else{
-            return new Polynomial(0);
+            return new Constant(0);
         }
 
     }
