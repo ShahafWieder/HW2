@@ -29,12 +29,15 @@ public class Polynomial extends Function {
                 }
             }
              else {
-                if (this.values[i] > 0) {
-                    polyString += " + ";
-                } else {
-                    polyString += " - ";
-                }
-                if (this.values[i] != 1 || this.values[i] != -1) {
+                 //if((this.values[i-1])!=0 || i=this.values.length-1) {
+                     if (this.values[i] > 0 && i!=counter) {
+                         polyString += " + ";
+                     } else if (this.values[i] < 0) {
+                         polyString += " - ";
+                     }
+                     else {polyString += "";}
+                 //}
+                if (this.values[i] != 1.0 && this.values[i] != -1.0) {
                     if (i == 1) {
                         if (checkInt(this.values[i])){
                         polyString += (int) this.values[i] + "x";
@@ -62,7 +65,7 @@ public class Polynomial extends Function {
             }
         }
         polyString+=")";
-        return polyString;
+return polyString;
     }
     public boolean checkInt (double current_value){
         double absValue = Math.abs(current_value);

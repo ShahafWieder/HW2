@@ -24,7 +24,7 @@ public class MultiSum extends Polynomial {
         for (int i = 0; i < this.functions.length - 1; i++) {
             sumString += this.functions[i].toString() + " + ";
         }
-        sumString = sumString + "(" + this.functions[functions.length - 1].toString() + "))";
+        sumString = sumString  + this.functions[functions.length - 1].toString() + ")";
         return sumString;
     }
 

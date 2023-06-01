@@ -17,7 +17,7 @@ public class Product extends Polynomial{
     @Override
     public Function derivative() {
         // Using the product rule (f*g)' = f'*g + f*g'
-        return new Sum(new Product(this.f1.derivative(), f2), new Product(f1, this.f2.derivative()));
+        return new Sum(new Product(this.f1.derivative(), f2), new Product(this.f2.derivative(),this.f1));
     }
 
 }

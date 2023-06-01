@@ -16,7 +16,7 @@ public class Quotient extends Function {
     public Function derivative() {
         // Using the quotient rule
         // (g(x) * f'(x) - f(x) * g'(x)) / (g(x))^2
-        return new Quotient(new Difference(new Product(this.f2,this.f1.derivative()), new Product(this.f1, this.f2.derivative())),
+        return new Quotient(new Difference(new Product(this.f1.derivative(),f2), new Product(this.f2.derivative(),this.f1 )),
                 new Power(this.f2, 2));
     }
 
