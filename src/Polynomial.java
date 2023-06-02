@@ -62,8 +62,13 @@ public class Polynomial extends Function {
                 }
             }
         }
-        polyString+=")";
-return polyString;
+        if(counter==this.values.length){
+            polyString+="0)";
+        }
+        else {
+            polyString += ")";
+        }
+    return polyString;
     }
     public boolean checkInt (double current_value){
         double absValue = Math.abs(current_value);

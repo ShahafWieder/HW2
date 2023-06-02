@@ -1,12 +1,11 @@
 public class Constant extends Polynomial{
-private  double cFunction;
+private  final double cFunction;
 public  Constant(double c){
-
    this.cFunction= c;
 }
     @Override
     public double valueAt (double x){
-    return this.cFunction;
+        return this.cFunction;
     }
     @Override
     public String toString() {

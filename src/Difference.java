@@ -1,6 +1,6 @@
 public class Difference extends Polynomial {
-    private  Function d1;
-    private  Function d2;
+    private final Function d1;
+    private final Function d2;
     public Difference(Function p1, Function p2) {
         this.d1=p1;
         this.d2=p2;

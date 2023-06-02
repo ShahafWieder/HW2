@@ -1,6 +1,6 @@
 public class Power extends Polynomial{
     private Function f;
-    private int power;
+    private final int power;
     private Function tempPower;
     public Power(Function f1, int power) {
         this.f = f1;
@@ -12,7 +12,7 @@ public class Power extends Polynomial{
     }
     @Override
     public String toString() {
-        if(this.power >1) {
+        if(this.power >=1) {
             return "(" + this.f.toString() + "^" + this.power+")";
         }
         else{

@@ -8,87 +8,65 @@ public abstract class Function {
     public double bisectionMethod(double a, double b, double epsilon) {
         double left = a;
         double right = b;
-        double mid = (left + right) / 2;
-        while (Math.abs(this.valueAt(mid)) > epsilon) {
-            if (this.valueAt(mid) * this.valueAt(left) > 0) {
+        double mid;
+        while (right-left > epsilon) {
+            mid = (left + right) / 2;
+            if (valueAt(left) * valueAt(mid) > 0) {
                 left = mid;
             } else {
                 right = mid;
             }
-            mid = (left + right) / 2;
         }
-        return mid;
+        return (left + right) / 2;
     }
 
     public double bisectionMethod(double a, double b) {
-        double left = a;
-        double right = b;
-        double mid = (left + right) / 2;
-        while (Math.abs(this.valueAt(mid)) > 10e-5) {
-            if (this.valueAt(mid) * this.valueAt(left) > 0) {
-                left = mid;
-            } else {
-                right = mid;
-            }
-            mid = (left + right) / 2;
-        }
-        return mid;
+        return bisectionMethod(a, b, Math.pow(10,-5));
     }
 
     public double newtonRaphsonMethod(double a, double epsilon) {
-        double x0 = a; // Initial guess
-
-        while (true) {
-            double functionValue = this.valueAt(x0); // Calculate the value of the function at x0
-            double derivativValue = this.derivative().valueAt(x0); // Calculate the value of the derivative at x0
-            double xk = x0 - functionValue / derivativValue; // Calculate the next approximation
-
-            if (Math.abs(xk - x0) < epsilon) {
-                return xk; // Return the root approximation
-            }
-
-            x0 = xk; // Update the approximation for the next iteration
+        while (!(Math.abs(this.valueAt(a)) < Math.abs(epsilon))) {
+            double functionValue = valueAt(a); // Calculate the value of the function at x0
+            double derivativeValue = derivative().valueAt(a); // Calculate the value of the derivative at x0
+            a -= (functionValue/derivativeValue); // Calculate the next approximation
         }
+        return a;
     }
 
     public double newtonRaphsonMethod(double a) {
-        double x0 = a; // Initial guess
-
-        while (true) {
-            double functionValue = this.valueAt(x0); // Calculate the value of the function at x0
-            double derivativValue = this.derivative().valueAt(x0); // Calculate the value of the derivative at x0
-            double xk = x0 - functionValue / derivativValue; // Calculate the next approximation
-
-            if (Math.abs(xk - x0) < 10e-5) {
-                return xk; // Return the root approximation
-            }
-
-            x0 = xk; // Update the approximation for the next iteration
-        }
+        return newtonRaphsonMethod(a, Math.pow(10,-5));
     }
 
     public Function taylorPolynomial(int n) {
-        double[] coefficients = new double[n + 1];
-        Function currentFunction = this;
-        if(currentFunction.derivative().valueAt(0) == 0){
-            return new Polynomial(new double[]{currentFunction.valueAt(0)});
-        }
-        for (int i = 0; i <= n; i++) {
-            Function derivative = currentFunction.derivative();
-            double coefficient = derivative.valueAt(0);
-            coefficient /= factorial(i); // Divide the coefficient by i factorial
-            coefficients[i] = coefficient;
-            currentFunction = derivative; // Update the currentFunction to the derivative for the next iteration
-        }
-        return new Polynomial(coefficients);
+            // Array to store coefficients of the Taylor polynomial
+            double[] coefficients = new double[n + 1];
+
+            // Initialize the current function as the instance of the function the method is called on
+            Function currentFunction = this;
+
+            // Loop through from 0 to n to calculate each coefficient
+            for (int i = 0; i <= n; i++) {
+                // Calculate the i-th coefficient by evaluating the derivative at x = 0
+                // and dividing by i factorial
+                double coefficient = currentFunction.valueAt(0) / factorial(i);
+
+                // Store the coefficient in the array
+                coefficients[i] = coefficient;
+
+                // Update currentFunction to the derivative for the next iteration
+                currentFunction = currentFunction.derivative();
+            }
+
+            // Return a new Polynomial function with the calculated coefficients
+            return new Polynomial(coefficients);
     }
 
-    // Helper method to calculate factorial
-    public static long factorial(int n) {
-        long fact = 1;
+// Helper function to calculate factorial of an integer
+    public static double factorial(int n) {
+        double result = 1;
         for (int i = 2; i <= n; i++) {
-            fact *= i;
+            result *= i;
         }
-        return fact;
+        return result;
     }
 }

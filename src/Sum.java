@@ -14,7 +14,7 @@ public class Sum extends Polynomial {
     }
     @Override
     public String toString(){
-        return "("+this.f1+" + "+this.f2+")";
+        return "("+this.f1.toString()+" + "+this.f2.toString()+")";
     }
     @Override
     public Function derivative(){
