@@ -38,18 +38,18 @@ public class Polynomial extends Function {
                 if (this.values[i] != 1.0 && this.values[i] != -1.0) {
                     if (i == 1) {
                         if (checkInt(this.values[i])){
-                        polyString += (int) this.values[i] + "x";
+                        polyString += Math.abs((int) this.values[i]) + "x";
                         }
                         else {
-                            polyString+=this.values[i]+ "x";
+                            polyString+=Math.abs(this.values[i])+ "x";
                         }
                     }
                     else {
                         if (checkInt(this.values[i])){
-                        polyString += (int) this.values[i] + "x^" + i;
+                        polyString += Math.abs((int) this.values[i]) + "x^" + i;
                         }
                         else {
-                            polyString+=this.values[i]+"x^" + i;
+                            polyString+=Math.abs(this.values[i])+"x^" + i;
                         }
                     }
                 }
