@@ -1,6 +1,6 @@
-public class Sum extends Polynomial {
-    private Function f1;
-    private Function  f2;
+public class Sum extends Function {
+    private final Function f1;
+    private final Function  f2;
 
     public Sum(Function f1, Function f2) {
         this.f1 = f1;

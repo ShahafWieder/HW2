@@ -1,5 +1,5 @@
-public class MultiProduct extends Polynomial {
-    private Function[] functions;
+public class MultiProduct extends Function {
+    private final Function[] functions;
     private Function f2;
 
     public MultiProduct(Function f1, Function f2, Function... p) {
@@ -11,6 +11,14 @@ public class MultiProduct extends Polynomial {
         }
     }
 
+    private MultiProduct(Function derivative, Function[] otherFunctions) {
+        Function[] factors = new Function[otherFunctions.length + 1];
+        factors[0] = derivative;
+        for(int i = 1; i < otherFunctions.length + 1; i++) {
+            factors[i] = otherFunctions[i-1];
+        }
+        this.functions = factors;
+    }
     @Override
     public double valueAt(double x) {
         double value = 1; // Initialize to 1 instead of 0
@@ -32,51 +40,23 @@ public class MultiProduct extends Polynomial {
 
     @Override
     public Function derivative() {
-        Function[] result = new Function[functions.length];
-
-        for (int i = 0; i < functions.length; i++) {
-            // Get a derivative of the i-th function
-            Function derivative = functions[i].derivative();
-
-            // Calculate the product of all other functions
-            Function[] otherFunctions = new Function[functions.length - 1];
-            int index = 0;
-            for (int j = 0; j < functions.length; j++) {
-                if (j != i) {
-                    otherFunctions[index++] = functions[j];
+        int numOfFunctions = functions.length;
+        Function[] derivatives = new Function[numOfFunctions];
+        for (int i = 0; i < numOfFunctions; i++) {
+            int k = 0;
+            Function[] otherFunctions = new Function[numOfFunctions - 1];
+            for(int j = 0; j < numOfFunctions; j++) {
+                if (i != j) {
+                    otherFunctions[k++] = functions[j];
                 }
             }
-
-            Function productOfOthers;
-            if (otherFunctions.length > 1) {
-                Function f1 = otherFunctions[0];
-                Function f2 = otherFunctions[1];
-                Function[] p = new Function[otherFunctions.length - 2];
-                for (int j = 2; j < otherFunctions.length; j++) {
-                    p[j - 2] = otherFunctions[j];
-                }
-                productOfOthers = new MultiProduct(f1, f2, p);
-            } else {
-                productOfOthers = otherFunctions[0];
-            }
-
-            result[i] = new MultiProduct(derivative, productOfOthers);
+            derivatives[i] = new MultiProduct(functions[i].derivative(),otherFunctions);
         }
 
-        // The derivative is the sum of all functions in the result
-        Function sum;
-        if (result.length > 1) {
-            Function f1 = result[0];
-            Function f2 = result[1];
-            Function[] p = new Function[result.length - 2];
-            for (int i = 2; i < result.length; i++) {
-                p[i - 2] = result[i];
-            }
-            sum = new MultiSum(f1, f2, p);
-        } else {
-            sum = result[0];
-        }
+        return splitDerivative(derivatives);
+    }
 
-        return sum;
+    public MultiSum splitDerivative(Function[] derivatives) {
+        return MultiSum.getMultiSum(derivatives, functions);
     }
 }

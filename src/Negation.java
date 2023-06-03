@@ -1,22 +1,22 @@
-public class Negation extends Product {
-    private Function f;
+public class Negation extends Function {
+    private final Function function;
 
-    public Negation(Function f) {
-        super(f, new Constant(-1));
-        this.f = f;
+    public Negation(Function function) {
+        this.function = function;
     }
 
     @Override
     public double valueAt(double x) {
-        return super.valueAt(x);  // This will compute f(x) * -1
+        return -function.valueAt(x);
     }
 
     @Override
-    public  String  toString(){
-        return "(-"+this.f.toString()+")";
-    }
-    @Override
     public Function derivative() {
-        return new Negation(this.f.derivative());
+        return new Negation(function.derivative());
+    }
+
+    @Override
+    public String toString() {
+        return "(-" + function.toString() + ")";
     }
 }

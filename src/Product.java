@@ -1,6 +1,6 @@
-public class Product extends Polynomial{
-    private Function f1;
-    private Function f2;
+public class Product extends Function{
+    private final Function f1;
+    private final Function f2;
     public Product(Function p1, Function p2)
     {
     this.f1=p1;

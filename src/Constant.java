@@ -1,4 +1,4 @@
-public class Constant extends Polynomial{
+public class Constant extends Function{
 private  final double cFunction;
 public  Constant(double c){
    this.cFunction= c;

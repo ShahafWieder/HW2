@@ -1,5 +1,5 @@
-public class Power extends Polynomial{
-    private Function f;
+public class Power extends Function{
+    private final Function f;
     private final int power;
     private Function tempPower;
     public Power(Function f1, int power) {
@@ -23,7 +23,7 @@ public class Power extends Polynomial{
     public Function derivative() {
         // Using the power rule (f^n)' = n * f^(n-1) * f'
         if (power != 0) {
-            return new Product(new Constant(this.power), new Product(new Power(this.f, this.power - 1), this.f.derivative()));
+            return new MultiProduct(new Constant(this.power),new Power(this.f, this.power - 1), this.f.derivative());
         } else {
             return new Constant(0);
         }

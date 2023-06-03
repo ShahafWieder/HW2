@@ -1,5 +1,5 @@
-public class MultiSum extends Polynomial {
-    private Function[] functions;
+public class MultiSum extends Function {
+    private final Function[] functions;
     public MultiSum(Function f1, Function f2, Function... p) {
         this.functions = new Function[p.length + 2];
         this.functions[0] = f1;
@@ -37,6 +37,18 @@ public class MultiSum extends Polynomial {
             derivativeFunctions[i] = functions[i+2].derivative();
         }
         return new MultiSum(f1,f2,derivativeFunctions);
+    }
+
+    static MultiSum getMultiSum(Function[] derivatives, Function[] functions) {
+        Function derivativesFirst;
+        Function derivativesSecond;
+        derivativesFirst = derivatives[0];
+        derivativesSecond = derivatives[1];
+        Function[] derivativesOthers = new Function[functions.length - 2];
+        for(int i = 0; i < functions.length - 2; i++) {
+            derivativesOthers[i] = derivatives[i + 2];
+        }
+        return new MultiSum(derivativesFirst, derivativesSecond, derivativesOthers);
     }
 
 }

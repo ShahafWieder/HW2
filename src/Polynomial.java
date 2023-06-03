@@ -1,5 +1,5 @@
 public class Polynomial extends Function {
-        private double [] values;
+        private final double [] values;
         public Polynomial(double...p) {
             this.values = p;
         }

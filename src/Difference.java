@@ -1,4 +1,4 @@
-public class Difference extends Polynomial {
+public class Difference extends Function {
     private final Function d1;
     private final Function d2;
     public Difference(Function p1, Function p2) {
