@@ -1,5 +1,19 @@
+/**
+ * The Date class represents a date with day, month, and year components.
+ * It provides methods to initialize, modify, and retrieve the date,
+ * as well as compare dates for equality and calculate hash codes.
+ */
 public class Date {
     protected int day, month, year;
+
+    /**
+     * Constructs a new Date instance with the specified year, month, and day.
+     * If any value is out of the valid range, it is set to a default value.
+     *
+     * @param year  the year component of the date
+     * @param month the month component of the date
+     * @param day   the day component of the date
+     */
     public Date(int year, int month, int day) {
         this.day = day;
         if(day>31 || day<1){
@@ -14,6 +28,13 @@ public class Date {
             this.year=0;
         }
     }
+
+    /**
+     * Sets the month component of the date to the specified value.
+     * If the value is out of the valid range, it is set to a default value.
+     *
+     * @param month2 the new value for the month component
+     */
     public void setMonth(int month2) {
 
         if(month2>12 || month2<1){
@@ -22,12 +43,18 @@ public class Date {
         else {this.month=month2;}
     }
 
+
+    /**
+     * Returns a string representation of the date in the format "day/month/year".
+     *
+     * @return the string representation of the date
+     */
     @Override
     public String toString() {
 
-        String da = null;
-        String mo = null;
-        String ye = null;
+        String da;
+        String mo;
+        String ye;
 
         if(this.day<10){
             da="0"+this.day;
@@ -56,6 +83,14 @@ public class Date {
         return (da+"/"+mo+"/"+ye);
     }
 
+
+    /**
+     * Compares this Date object to the specified object for equality.
+     * Two Date objects are considered equal if they have the same day, month, and year.
+     *
+     * @param obj the object to compare with
+     * @return true if the objects are equal, false otherwise
+     */
     @Override
     public boolean equals(Object obj){
     if(obj==null){
@@ -69,6 +104,13 @@ public class Date {
 
     }
 
+
+    /**
+     * Returns the hash code value for this Date object.
+     * The hash code is calculated based on the day, month, and year values.
+     *
+     * @return the hash code value for this object
+     */
     @Override
     public int hashCode() {
         return this.day*1440+this.month*44640+this.year*535680;
